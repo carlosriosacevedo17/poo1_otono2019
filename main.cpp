@@ -1,65 +1,51 @@
 #include <iostream>
-#include <cstring>
-#include <cassert>
+#include <cstdlib>
+#define MaxTamaPila 5
 using namespace std;
-class Empleado{
+class Pila{
 private:
-	char *nombre;
-	char *paterno;
-	static int cuenta;
+	int A[MaxTamaPila],cima;
 public:
-	Empleado(const char*, const char*);
-	~Empleado();
-	const char *getNombre() const;
-	const char *getPaterno() const;
-	static int getCuenta();
+	Pila(){cima=-1;}
+	~Pila(){cout<<"Entra el destructor";};
+	bool EstallenaP()
+    {return cima==MaxTamaPila-1;}
+    bool EstaVaciaP()
+    {return cima==-1;}
+	void Push(int elemento){
+		if (EstallenaP())
+        {
+          cout << "Desbordamiento Pila";
+          exit(1);
+        }
+        cima++;
+        A[cima]=elemento;
+	}
+	int Pop(){
+	 int Aux;
+	  if (EstaVaciaP())
+       {
+        cout << "Se intenta sacar un elemento en pila vacia";
+        exit(1);
+       }
+      Aux=A[cima];
+      cima--;
+    return Aux;
+	}
 };
-
-int Empleado::cuenta=0;
-int Empleado::getCuenta(){return cuenta;}
-Empleado::Empleado(const char *nom, const char *pat)
-{
-	nombre=new char[strlen(nom)+1];
-	assert(nombre!=0);
-	strcpy(nombre,nom);
-	paterno=new char[strlen(pat)+1];
-	assert(paterno!=0);
-	strcpy(paterno,pat);
-	++cuenta;
-	cout <<"Constructor de Empleado para "<<nombre
-	    << " " << paterno << " llamado." << endl;
-}
-
-Empleado::~Empleado()
-{
-	cout << "~Empleado() llamado para " <<nombre
-	     << " " << paterno <<endl;
-	delete [] nombre;
-	delete [] paterno;
-	--cuenta;
-}
-const char *Empleado::getNombre() const{return nombre;}
-const char *Empleado::getPaterno() const{return paterno;}
 int main(int argc, char** argv) {
-	cout <<"El numero de empleados antes de crear la instancia es: "
-	     <<Empleado::getCuenta()<<endl;
-	Empleado *ptrE1 = new Empleado("Susana", "Baez");
-	Empleado *ptrE2 = new Empleado("Roberto","Jimenez");
-	
-	cout <<"El numero de empleados despues de crear la instancia es: "
-	     <<Empleado::getCuenta()<<endl;  
-	cout <<"\n\nEmpleado 1: "
-	     <<ptrE1->getNombre()
-	     <<" "<<ptrE2->getPaterno()
-	     <<"\n\nEmpleado 2: "
-	     <<ptrE2->getNombre()
-	     <<" "<<ptrE2->getPaterno()<<"\n\n";
-	delete ptrE1;
-	ptrE1=0;
-	delete ptrE2;
-	ptrE2=0;
-	cout <<"\nEl numero de empleados despues de la eliminacion es: "
-	     <<Empleado::getCuenta()<<endl; 
-	     
+	Pila PilaOriginal;
+	PilaOriginal.Push(3);
+	PilaOriginal.Push(2);
+	PilaOriginal.Push(5);
+	PilaOriginal.Push(6);
+	PilaOriginal.Push(7);
+	cout<<PilaOriginal.Pop()<<endl;
+	cout<<PilaOriginal.Pop()<<endl;
+	cout<<PilaOriginal.Pop()<<endl;
+	cout<<PilaOriginal.Pop()<<endl;
+	cout<<PilaOriginal.Pop()<<endl;
+	cout<<PilaOriginal.Pop()<<endl;
+	system("PAUSE");
 	return 0;
 }

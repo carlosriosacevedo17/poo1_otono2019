@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1416862534 source:c:\users\carlo_000\desktop\listassencillas\main.cpp
+	<iostream>
+	<iomanip>
+	<cstdlib>
+
+1416862534 source:c:\users\carlo_000\desktop\clases_buap\pooii\listassencillas\main.cpp
+	<iostream>
+	<iomanip>
+	<cstdlib>
+

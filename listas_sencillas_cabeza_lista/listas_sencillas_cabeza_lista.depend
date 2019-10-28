@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1420426134 source:c:\users\carlo_000\desktop\listas_sencillas_cabeza_lista\main.cpp
+	<iostream>
+	<iomanip>
+	<cstdlib>
+
